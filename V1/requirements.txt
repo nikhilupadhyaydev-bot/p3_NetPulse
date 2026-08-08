@@ -1,0 +1,56 @@
+REQUIREMENTS FOR THIS SCRIPT (NetPulse)
+=========================================
+
+1. PYTHON VERSION
+   Python 3.0 or higher (uses only standard library, so almost
+   any modern Python 3 version works)
+
+2. PYTHON PACKAGES
+   None external required
+   Uses only built-in modules: subprocess
+
+3. OPERATING SYSTEM
+   Windows ONLY
+   Commands used (ipconfig, getmac, tracert, route print) are
+   Windows-specific and will fail with "command not found" on
+   macOS or Linux
+   For cross-platform use, equivalents would need to change:
+     ipconfig  -> ifconfig / ip addr   (Linux/macOS)
+     tracert   -> traceroute           (Linux/macOS)
+     getmac    -> ifconfig / ip link   (Linux/macOS)
+     route print -> route -n / netstat -r (Linux/macOS)
+
+4. SYSTEM TOOLS / PATH REQUIREMENTS
+   The following command-line utilities must be installed and
+   available in system PATH (they are on Windows by default):
+     ping
+     ipconfig
+     hostname
+     getmac
+     arp
+     tracert
+     nslookup
+     netstat
+     route
+
+5. INTERNET CONNECTION
+   Required for: ping, tracert, nslookup
+   Not required for: ipconfig, hostname, getmac, arp, netstat, route print
+   (these work offline / on local system info)
+
+6. PERMISSIONS
+   Standard user permissions are usually enough
+   Some commands (getmac, full netstat/arp details) may show more
+   info or need Administrator/elevated terminal on certain systems
+
+7. USER INPUT VALIDATION NOTES
+   No validation on IP/domain input for ping, tracert, nslookup
+   (invalid input just causes the command itself to fail/error,
+   not the Python script)
+   Menu number input is validated to be an integer, but not
+   validated for logical range beyond the if/elif checks
+
+8. RUNTIME NOTE
+   Script runs immediately on execution (banner(), prints, and
+   mainfun() all run at module level with no "if __name__ == main"
+   guard) — running this as an import will trigger the full program
